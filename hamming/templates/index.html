@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamming Code Simulator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+            background: #ffd89b; 
+            background: -webkit-linear-gradient(to right, #3376a2, #ffd89b);  
+            background: linear-gradient(to right, #3376a2, #ffd89b); 
+
+        }
+        .container {
+            max-width: 600px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Hamming Error Correcting Simulator</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="data">Enter data to be transmitted:</label>
+                <input type="text" class="form-control" id="data" name="data" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate Hamming Code</button>
+        </form>
+
+        {% if transferred_data %}
+        <div class="result">
+            <h3>Data transferred is: {{ transferred_data }}</h3>
+        </div>
+        <form method="post">
+            <div class="form-group">
+                <label for="error_data">Enter received data to check for errors:</label>
+                <input type="text" class="form-control" id="error_data" name="error_data" required>
+                <input type="hidden" name="data" value="{{ input_data }}">
+            </div>
+            <button type="submit" class="btn btn-warning">Check for Errors</button>
+        </form>
+        {% endif %}
+
+        {% if error_data %}
+        <div class="result">
+            <h3>Error Data is: {{ error_data }}</h3>
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result">
+            <h3>{{ result }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
