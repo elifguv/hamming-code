@@ -46,6 +46,7 @@ def checkBits(arr, r):
     
     #gercek sendrom kelimesine ulasmak icin sonuc ters cevrilir
     hamming = hamming[::-1]
+    print("Hamming Code: " + hamming)
     return hamming
 
 def errorCheckBits(r, arr_input):
@@ -109,8 +110,9 @@ def index():
             else:
                 result = f"The position of error is {len(arr_input) - correction + 1} from the left"
                 error_position = correction
-            return render_template('index.html', result=result, transferred_data=arr, input_data=data, error_data=arr_input, error_position=error_position)
-        return render_template('index.html', transferred_data=arr, input_data=data)
+            return render_template('index.html', result=result, hamming_code=hamming, transferred_data=arr, input_data=data, error_data=arr_input, error_position=error_position)
+        return render_template('index.html', hamming_code=hamming, transferred_data=arr, input_data=data)
     return render_template('index.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
