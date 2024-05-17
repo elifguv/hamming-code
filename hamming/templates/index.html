@@ -11,13 +11,25 @@
             background: #ffd89b; 
             background: -webkit-linear-gradient(to right, #3376a2, #ffd89b);  
             background: linear-gradient(to right, #3376a2, #ffd89b); 
-
         }
         .container {
             max-width: 600px;
         }
         .result {
             margin-top: 20px;
+        }
+        .highlight {
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            padding: 2px 4px;
+            font-size: 1.25rem; /*font boyutunu artirir */
+        }
+        .correct {
+            background-color: green;
+        }
+        .error {
+            background-color: red;
         }
     </style>
 </head>
@@ -46,15 +58,21 @@
         </form>
         {% endif %}
 
-        {% if error_data %}
-        <div class="result">
-            <h3>Error Data is: {{ error_data }}</h3>
-        </div>
-        {% endif %}
-
         {% if result %}
         <div class="result">
             <h3>{{ result }}</h3>
+        </div>
+        {% endif %}
+
+        {% if error_data %}
+        <div class="result">
+            {% for i in range(error_data|length) %}
+                {% if error_position and i == error_data|length - error_position %}
+                    <span class="highlight error">{{ error_data[i] }}</span>
+                {% else %}
+                    <span class="highlight correct">{{ error_data[i] }}</span>
+                {% endif %}
+            {% endfor %}
         </div>
         {% endif %}
     </div>
