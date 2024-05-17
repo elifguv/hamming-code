@@ -44,6 +44,12 @@
             <button type="submit" class="btn btn-primary">Calculate Hamming Code</button>
         </form>
 
+        {% if hamming_code %}
+        <div class="result">
+            <h3>Hamming Code: {{ hamming_code }}</h3>
+        </div>
+        {% endif %}
+
         {% if transferred_data %}
         <div class="result">
             <h3>Data transferred is: {{ transferred_data }}</h3>
