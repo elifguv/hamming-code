@@ -95,6 +95,8 @@ def index():
         arr = posRedundantBits(data, r)
         hamming = checkBits(arr, r)
         arr = calcParityBits(arr, r)
+        error_position = None
+
         if 'error_data' in request.form:
             arr_input = request.form['error_data']
             data_hamming = errorCheckBits(r, arr_input)
@@ -103,11 +105,12 @@ def index():
                 result = "There is no error in the received message."
             elif hamming != data_hamming:
                 result = "The error is in check bits"
+                error_position = correction
             else:
                 result = f"The position of error is {len(arr_input) - correction + 1} from the left"
-            return render_template('index.html', result=result, transferred_data=arr, input_data=data, error_data=arr_input)
+                error_position = correction
+            return render_template('index.html', result=result, transferred_data=arr, input_data=data, error_data=arr_input, error_position=error_position)
         return render_template('index.html', transferred_data=arr, input_data=data)
     return render_template('index.html')
-
 if __name__ == '__main__':
     app.run(debug=True)
