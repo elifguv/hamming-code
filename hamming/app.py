@@ -46,7 +46,7 @@ def checkBits(arr, r):
     
     #gercek sendrom kelimesine ulasmak icin sonuc ters cevrilir
     hamming = hamming[::-1]
-    print("Hamming Code: " + hamming)
+    print("Parity bits: " + hamming)
     return hamming
 
 def errorCheckBits(r, arr_input):
